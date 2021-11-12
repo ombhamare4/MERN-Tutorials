@@ -1,12 +1,18 @@
 import React from 'react';
+import '../../index.css'
+const UserItem = (props) => {
+    return (
 
-const UserItem= (props) =>{
-    return(
-    
-        <div className="d-flex m-auto justify-content-center text-center">
-            <h1>{props.name}</h1>
-            <h1>{props.price}</h1>
+        <div className="m-5  border-solid border-4 border-blue-500  w-80 mr-5 p-4 text-center items-center rounded-full backdrop-filter backdrop-hue-rotate-15 ">
+            <div className="p-5 ">
+                <img className="w-56  rounded-full" src={props.image} alt="..." />
+            </div>
+            <div className="bg-red-500 m-auto rounded-full">
+                <h1 className="">{props.name}</h1>
+                <h1 className="">{props.placeCount}</h1>
+            </div>
         </div>
+
     )
 };
 

@@ -1,17 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect , Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import Users from './users/pages/Users';
 import NewPlaces from './places/pages/NewPlaces';
 import UserList from './users/components/UserList';
 
-const DUMMY_PRODUCTS =[
-  // {
-  //   id:'1',
-  //   name:'Ps5',
-  //   price:'888'
-  // }
-];
+
 
 function App() {
   return (
@@ -24,7 +18,7 @@ function App() {
           <NewPlaces />
         </Route>
         <Route path="/user/list" exact >
-          <UserList items={DUMMY_PRODUCTS}/>
+          <UserList/>
         </Route>
         <Redirect to="/" />
       </Switch>
