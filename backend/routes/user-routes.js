@@ -1,30 +1,30 @@
 const express = require('express');
 const  router = express.Router();
+const  {check} = require("express-validator");
+
+const userContoller = require('../controllers/users-controller');
 
 
-const DUMMY_USERS = [
-    {
-        id:"u1",
-        name:"Peter Parker",
-        age:"21",
-        placesVisited:"25"
-    },
-    {
-        id:"u2",
-        name:"MJ",
-        age:"20",
-        placesVisited:"19"
-    }
-]
 
+router.get('/users/all',userContoller.getAllUsers);
+router.get('/users/:uid',userContoller.getUserById);
+router.post(
+    '/users/signup',
+    [
+        check('name').not().isEmpty(),
+        check('email').isEmail(),
+        check('password').isLength({min:8})
+    ],
+    userContoller.signUp);
 
-router.get('/:uid',(req,res,next)=>{
-    const uid = req.params.uid;
-    console.log(uid);
-    const users = DUMMY_USERS.find(u=>{
-        return u.id === uid;
-    });
-    res.json({users});
-});
+router.post(
+    "/users/login",
+    [
+        check('email')
+        .normalizeEmail() // TEST@gmail.com => test@gmail.com
+        .isEmail(),
+        check('password').isLength({min:8})
+    ],
+    userContoller.login);
 
 module.exports = router;
